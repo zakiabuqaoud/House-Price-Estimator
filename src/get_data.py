@@ -44,5 +44,4 @@ def descriptive():
     return 0
 
 
-get_data()
 
