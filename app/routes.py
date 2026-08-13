@@ -7,10 +7,10 @@ router = APIRouter()
 
 # load models
 models = {
-    "v1": joblib.load("../models/model_v1.pkl"),
-    "v2": joblib.load("../models/model_v2.pkl"),
+    "v1": joblib.load("models/model_v1.pkl"),
+    "v2": joblib.load("models/model_v2.pkl"),
 }
-scaler = joblib.load("../models/scaler.pkl")
+scaler = joblib.load("models/scaler.pkl")
 
 @router.post("/predict", response_model=PredictionResponse)
 def predict(
