@@ -2,6 +2,16 @@
 # California Housing Prediction App
 Target => calculate Median House Value in Dollars by using API App
 
+
+# *********  Results and Comparisons  **********
+
+Model v1 (Linear Regression) -> MAE: 0.5332 | RMSE: 0.7456
+Model v2 (Random Forest)    -> MAE: 0.3277 | RMSE: 0.5060
+mae_v2 is 0.3277 and it is smaller than from mae_v1 0.5332
+The error rate is lower in Random Forest Regression
+Random Forest Regression is the best model for house price estimator
+
+
 # *********  Models  **********
 
  1- model_v1: "Linear Regression (Linear Baseline)"
@@ -37,10 +47,16 @@ Features:
 Target 
 1) House Price
 
-# *********  Results and Comparisons  **********
+# *********  Debugging Log  **********
 
-Model v1 (Linear Regression) -> MAE: 0.5332 | RMSE: 0.7456
-Model v2 (Random Forest)    -> MAE: 0.3277 | RMSE: 0.5060
-mae_v2 is 0.3277 and it is smaller than from mae_v1 0.5332
-The error rate is lower in Random Forest Regression
-Random Forest Regression is the best model for house price estimator
+1- High Prediction Error
+
+trouble: When was model_v1 and using "/predict" =>  the returned house price predictions were unrealistically
+
+The reason for the problem is that it must appling standerscaler then passing data input
+
+2- Problem Solution 
+Loaded scaler.pkl and updated the code in routes.py when be v1:
+  if version == "v1":
+      input_df = pd.DataFrame(scaler.transform(input_df), columns=input_df.columns)
+
